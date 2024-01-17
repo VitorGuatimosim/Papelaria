@@ -10,7 +10,35 @@
     <title>Login</title>
 </head>
 <body>
-    <header><img src="Imagens/Logo.png"></header>
+    <header>
+        <img src="Imagens/Logo.png">
+
+        <div class="nav-menu">
+            <div class="dropdown">
+                <input type="button" value="Menu Venda" class="btn">
+                <div class="dropdown-content">
+                  <a href="#">Cadastrar Venda</a>
+                  <a href="#">Listar Vendas Cadastradas</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <input type="button" value="Menu Estoque" class="btn">
+                <div class="dropdown-content">
+                    <a href="#">Cadastrar Produto</a>
+                    <a href="#">Listar Produtos Cadastrados</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <input type="button" value="Menu Usuário" class="btn">
+                <div class="dropdown-content">
+                    <a href="#">Cadastrar Usuário</a>
+                    <a href="#">Listar Usuários Cadastrados</a>
+                </div>
+            </div>
+        </div>
+    </header>
 
     <div class="main-content">
         <div class="container">
@@ -29,17 +57,17 @@
                 <div class="col-md-3 menu-venda">
                     <h2>MENU VENDA</h2>
                     <p>No campo Venda, você pode cadastrar, editar e visualizar vendas!</p>
-                    <input type="submit" value="IR" class="btn btn-primary rounded-pill px-3">
+                    <a href="#"><input type="button" value="IR" class="btn btn-primary rounded-pill px-3"></a>
                 </div>
                 <div class="col-md-3 menu-estoque">
                     <h2>MENU ESTOQUE</h2>
                     <p>No campo Estoque, você pode cadastrar, editar e visualizar produtos!</p>
-                    <input type="submit" value="IR" class="btn btn-primary rounded-pill px-3">
+                    <a href="#"><input type="button" value="IR" class="btn btn-primary rounded-pill px-3"></a>
                 </div>
                 <div class="col-md-3 menu-usuario">
                     <h2>MENU USUÁRIO</h2>
                     <p>No campo Usuário, você pode cadastrar, editar e visualizar usuários!</p>
-                    <input type="submit" value="IR" class="btn btn-primary rounded-pill px-3">
+                    <a href="#"><input type="button" value="IR" class="btn btn-primary rounded-pill px-3"></a>
                 </div>
             </div>
         </div>
