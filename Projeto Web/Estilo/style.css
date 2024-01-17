@@ -12,3 +12,55 @@ header img{
     max-width: 100%;
 
 }
+
+.main-content{
+    margin-top: 20px;
+
+}
+
+.bloco-mensagem-inicial{
+    text-align: center;
+
+}
+
+.row .form-login{
+    margin-top: 50px;
+}
+
+.row form{
+    text-align: center;
+
+}
+
+.row form input{
+    width: 300px;
+}
+
+.row form label{    
+    width: 75px;
+}
+
+.row form input, .row form label{
+    margin: 20px;
+    max-width: 100%;
+}
+
+.row form .btnEntrar{
+    width: 100px;
+    padding-left: 12px;
+    padding-right: 12px;
+    background-color: #FFE300;
+    border: 1px solid #FFE300;
+    color: black;
+}
+
+.row form .btnEntrar:hover{
+    background-color: #ddc300; 
+}
+
+.row form .btnEntrar:active:focus {
+    color: black; 
+    background-color: #c7b000; 
+    border-color: black;
+}
+
