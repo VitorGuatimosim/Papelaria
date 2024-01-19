@@ -68,6 +68,7 @@ header .nav-menu .btn{
 .main-content{
     margin-top: 20px;
     min-height: 100%;
+    max-width: 100%;
 }
 
 .btn{
@@ -75,7 +76,7 @@ header .nav-menu .btn{
     padding-left: 12px;
     padding-right: 12px;
     background-color: #FFE300;
-    border: 1px solid #FFE300;
+    border: 1px solid #FFE300 !important;
     color: black;
 }
 
@@ -87,6 +88,19 @@ header .nav-menu .btn{
     color: black; 
     background-color: #c7b000; 
     border-color: black;
+}
+
+.btnSecundario{
+    width: 100px;
+    padding-left: 12px;
+    padding-right: 12px;
+    background-color: #ffffff;
+    border: 1px solid #FFE300 !important;
+    color: black;
+}
+
+.titulo-pagina{
+    text-align: center;
 }
 
 footer{
@@ -134,19 +148,19 @@ footer{
     margin-top: 50px;
 }
 
-.row form{
+.row .form-login{
     text-align: center;
 }
 
-.row form input{
+.row .form-login form input{
     width: 300px;
 }
 
-.row form label{    
+.row .form-login form label{    
     width: 75px;
 }
 
-.row form input, .row form label{
+.row .form-login form input, .row .form-login form label{
     margin: 20px;
     max-width: 100%;
 }
@@ -180,4 +194,25 @@ footer{
 .menu-usuario{
     border: 1px solid black;
     margin: 0px 20px;
+}
+
+/* ESTILIZAÇÃO DA PÁGINA cadastroVenda.HTML */
+
+.titulo-pagina{
+    margin-bottom: 50px;
+}
+
+.form-cadastroVenda input, .form-cadastroVenda button, .form-cadastroVenda select{
+    border: black 1px solid;
+    width: 250px;
+}
+
+.form-cadastroVenda input, .form-cadastroVenda label, .form-cadastroVenda button, .form-cadastroVenda select{
+    margin: 10px;
+    max-width: 100%;
+}
+
+.form-cadastroVenda button, .form-cadastroVenda input[type="submit"]{
+    margin-top: 50px;
+
 }
