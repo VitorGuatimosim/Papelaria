@@ -170,6 +170,7 @@ footer{
 .menus{
     max-width: 100%;
     text-align: center;
+    margin-bottom: 10px;
 }
 
 .menus h2, .menus p, .menus .btn{
