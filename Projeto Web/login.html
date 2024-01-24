@@ -29,14 +29,17 @@
                 <div class="col-md-10 form-login">
                     <form action="home.html">
                         <h3>LOGIN</h3>
-                        <label for="usuario">Usuário</label>
-                        <input type="text" id="usuario" name="usuario" required maxlength="10">
-                        <br>
-
-                        <label for="senha">Senha</label>
-                        <input type="password" id="senha" name="senha" required>
-                        <br>
-
+                        <div class="row">
+                            <div class="col-md-3"></div>
+                            <label for="usuario">Usuário</label>
+                            <input class="rounded form-control" type="text" id="usuario" name="usuario" required maxlength="10">
+                            <br>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3"></div>
+                            <label for="senha">Senha</label>
+                            <input class="rounded form-control" type="password" id="senha" name="senha" required>
+                        </div>
                         <input type="submit" value="ENTRAR" class="btn btn-primary rounded-pill px-3" onclick="alert('Login feito com sucesso!')">
                     </form>                    
                 </div>
