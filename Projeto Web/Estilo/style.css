@@ -138,6 +138,66 @@ footer{
     }
 }
 
+.titulo-pagina{
+    margin-bottom: 50px;
+}
+
+
+/* ESTILIZAÇÃO DO FORMULÁRIO PADRÃO (CADASTRO/EDIÇÃO) */
+
+.form-padrao input, .form-padrao button, .form-padrao select{
+    border: black 1px solid;
+    width: 250px;
+}
+
+.form-padrao input, .form-padrao label, .form-padrao button, .form-padrao select{
+    margin: 10px;
+    max-width: 100%;
+}
+
+.form-padrao button, .form-padrao input[type="submit"]{
+    margin-top: 50px;
+
+}
+
+
+/* ESTILIZAÇÃO PADRÃO DA PÁGINA DE LISTAGEM */
+
+.div-pesquisa label{
+    max-width: 100%;
+    width: 50px;
+}
+
+.div-pesquisa input{
+    max-width: 100%;
+    width: 300px;
+}
+
+.tabela-lista{
+    margin-top: 20px;
+    max-width: 100%;
+    overflow: auto;
+    height: 450px;
+}
+
+.tabela-lista table{
+    height: fit-content;
+}
+
+.tabela-lista th, .tabela-lista td{
+    border: 2px solid black;
+    padding: 5px;
+}
+
+.botao-listagem button{
+    border: black 1px solid;
+    width: 250px;
+    margin: 10px;
+    max-width: 100%;
+    margin-top: 50px;
+}
+
+
 /* ESTILIZAÇÃO DA PÁGINA LOGIN.HTML */
 
 .bloco-mensagem-inicial{
@@ -164,6 +224,7 @@ footer{
     margin: 20px;
     max-width: 100%;
 }
+
 
 /* ESTILIZAÇÃO DA PÁGINA HOME.HTML */
 
@@ -195,25 +256,4 @@ footer{
 .menu-usuario{
     border: 1px solid black;
     margin: 0px 20px;
-}
-
-/* ESTILIZAÇÃO DA PÁGINA cadastroVenda.HTML */
-
-.titulo-pagina{
-    margin-bottom: 50px;
-}
-
-.form-cadastroVenda input, .form-cadastroVenda button, .form-cadastroVenda select{
-    border: black 1px solid;
-    width: 250px;
-}
-
-.form-cadastroVenda input, .form-cadastroVenda label, .form-cadastroVenda button, .form-cadastroVenda select{
-    margin: 10px;
-    max-width: 100%;
-}
-
-.form-cadastroVenda button, .form-cadastroVenda input[type="submit"]{
-    margin-top: 50px;
-
 }
