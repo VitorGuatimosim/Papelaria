@@ -147,17 +147,16 @@ footer{
 
 .form-padrao input, .form-padrao button, .form-padrao select{
     border: black 1px solid;
-    width: 250px;
+    width: 300px;
 }
 
 .form-padrao input, .form-padrao label, .form-padrao button, .form-padrao select{
-    margin: 10px;
+    margin: 5px;
     max-width: 100%;
 }
 
 .form-padrao button, .form-padrao input[type="submit"]{
     margin-top: 50px;
-
 }
 
 
