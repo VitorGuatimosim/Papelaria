@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-    <link href="Estilo/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="Estilo/style.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.css}"/>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
 
     <title>Login</title>
 </head>
 <body>
-    <header><img src="Imagens/Logo.png"></header>
+    <header th:insert="~{header.html}"></header>
 
     <div class="main-content">
         <div class="container">
@@ -18,7 +18,7 @@
                 <div class="col-md-1"></div>
                 <div class="col-md-10 bloco-mensagem-inicial">
                     <h1>Seja bem vindo a Papelaria Tesourinha</h1>
-                    <br><br>
+                    <br/><br/>
                     <p>Faça login abaixo!</p>
                 </div>
                 <div class="col-md-1"></div>
@@ -32,29 +32,21 @@
                         <div class="row">
                             <div class="col-md-3"></div>
                             <label for="usuario">Usuário</label>
-                            <input class="rounded form-control" type="text" id="usuario" name="usuario" required maxlength="10">
-                            <br>
+                            <input class="rounded form-control" type="text" id="usuario" name="usuario" required="true" maxlength="10"/>
+                            <br/>
                         </div>
                         <div class="row">
                             <div class="col-md-3"></div>
                             <label for="senha">Senha</label>
-                            <input class="rounded form-control" type="password" id="senha" name="senha" required>
+                            <input class="rounded form-control" type="password" id="senha" name="senha" required="true"/>
                         </div>
-                        <input type="submit" value="ENTRAR" class="btn btn-primary rounded-pill px-3" onclick="alert('Login feito com sucesso!')">
+                        <input type="submit" value="ENTRAR" class="btn btn-primary rounded-pill px-3" onclick="alert('Login feito com sucesso!')"/>
                     </form>                    
                 </div>
                 <div class="col-md-1"></div>
             </div>
         </div>
     </div>
-    <footer>
-        <div class="conteudo-footer">
-            <h2>Contatos</h2>
-            <div class="item"><a href="#"><img src="imagens/email.png"></a></div>
-            <div class="item"><a href="#"><img src="imagens/facebook.png"></a></div>
-            <div class="item"><a href="#"><img src="imagens/instagram.png"></a></div>
-            <div class="item"><a href="#"><img src="imagens/twitter.png"></a></div>
-        </div>
-    </footer>
+    <footer th:insert="~{footer.html}"></footer>
 </body>
 </html>

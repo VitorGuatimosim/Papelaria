@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="pt-br">
+    <head>
+        <title>Header</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        
+        <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.css}"/>
+        <link rel="stylesheet" th:href="@{/css/style.css}" />
+    </head>
+    <body>
+        <header>
+            <a th:href="@{/}"><img th:src="@{/images/Logo.png}"/></a>
+
+            <div class="nav-menu">
+                <div class="dropdown">
+                    <input type="button" value="Menu Venda" class="btn"/>
+                    <div class="dropdown-content">
+                      <a th:href="@{/cadastroVenda}">Cadastrar Venda</a>
+                      <a th:href="@{/controleVenda}">Listar Vendas Cadastradas</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <input type="button" value="Menu Estoque" class="btn"/>
+                    <div class="dropdown-content">
+                        <a th:href="@{/cadastroProduto}">Cadastrar Produto</a>
+                        <a th:href="@{/controleProduto}">Listar Produtos Cadastrados</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <input type="button" value="Menu Usuário" class="btn"/>
+                    <div class="dropdown-content">
+                        <a th:href="@{/cadastroUsuario}">Cadastrar Usuário</a>
+                        <a th:href="@{/controleUsuario}">Listar Usuários Cadastrados</a>
+                    </div>
+                </div>
+            </div>            
+        </header>
+    </body>
+</html>
