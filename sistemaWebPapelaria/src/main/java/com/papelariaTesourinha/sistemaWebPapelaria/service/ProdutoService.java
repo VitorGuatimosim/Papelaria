@@ -33,4 +33,16 @@ public class ProdutoService {
     public List<ProdutoEntity> listarTodosProdutos(){
         return produtoRepository.findAll();
     }
+    
+    public ProdutoEntity atualizarProduto(Integer prodId, ProdutoEntity produtoRequest){
+        ProdutoEntity prod = getProdutoId(prodId);
+        
+        prod.setNome(produtoRequest.getNome());
+        prod.setQuantidade(produtoRequest.getQuantidade());
+        prod.setValor(produtoRequest.getValor());
+        prod.setCategoria(produtoRequest.getCategoria());
+        
+        produtoRepository.save(prod);
+        return prod;
+    }
 }

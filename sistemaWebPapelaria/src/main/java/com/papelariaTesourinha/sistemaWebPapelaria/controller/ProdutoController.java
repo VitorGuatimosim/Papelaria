@@ -45,4 +45,11 @@ public class ProdutoController {
         ProdutoEntity produto = produtoService.getProdutoId(id);
         return new ResponseEntity<>(produto, HttpStatus.OK);
     }
+    
+    @PutMapping("/atualizar/{id}")
+    public ResponseEntity<ProdutoEntity> atualizarProduto(@PathVariable Integer id, @RequestBody ProdutoEntity produto){
+        var produtoAtualizado = produtoService.atualizarProduto(id, produto);
+        
+        return new ResponseEntity<>(produtoAtualizado, HttpStatus.OK);
+    }
 }
