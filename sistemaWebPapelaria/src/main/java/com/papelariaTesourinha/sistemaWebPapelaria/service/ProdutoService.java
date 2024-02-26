@@ -25,4 +25,12 @@ public class ProdutoService {
         
         return prod;
     }
+    
+    public ProdutoEntity getProdutoId(Integer prodId){
+        return produtoRepository.findById(prodId).orElse(null);
+    }
+    
+    public List<ProdutoEntity> listarTodosProdutos(){
+        return produtoRepository.findAll();
+    }
 }
