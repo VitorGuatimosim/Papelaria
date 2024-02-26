@@ -52,4 +52,11 @@ public class ProdutoController {
         
         return new ResponseEntity<>(produtoAtualizado, HttpStatus.OK);
     }
+    
+    @DeleteMapping("deletar/{id}")
+    public ResponseEntity deletarProduto(@PathVariable Integer id){
+        produtoService.deletarProduto(id);
+        
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

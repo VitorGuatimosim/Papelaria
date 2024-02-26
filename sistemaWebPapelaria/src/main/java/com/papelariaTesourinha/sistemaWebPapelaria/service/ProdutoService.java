@@ -45,4 +45,10 @@ public class ProdutoService {
         produtoRepository.save(prod);
         return prod;
     }
+    
+    public void deletarProduto(Integer prodId){
+        ProdutoEntity prod = getProdutoId(prodId);
+        
+        produtoRepository.deleteById(prod.getId());
+    }
 }
