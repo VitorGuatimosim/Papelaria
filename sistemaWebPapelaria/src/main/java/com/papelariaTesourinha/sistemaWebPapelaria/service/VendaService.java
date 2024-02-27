@@ -48,4 +48,10 @@ public class VendaService {
         vendaRepository.save(ven);
         return ven;
     }
+    
+    public void deletarVenda(Integer vendaId){
+        VendaEntity ven = getVendaId(vendaId);
+        
+        vendaRepository.deleteById(ven.getId());
+    }
 }
