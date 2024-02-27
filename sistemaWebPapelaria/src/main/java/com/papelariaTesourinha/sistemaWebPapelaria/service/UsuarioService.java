@@ -30,4 +30,21 @@ public class UsuarioService {
     public List<UsuarioEntity> listarTodosUsuarios(){
         return usuarioRepository.findAll();
     }
+    
+     public UsuarioEntity atualizarUsuario(Integer userId, UsuarioEntity usuarioRequest){
+        UsuarioEntity user = getUsuarioId(userId);
+        
+        user.setNome(usuarioRequest.getNome());
+        user.setCpf(usuarioRequest.getCpf());
+        user.setData_nascimento(usuarioRequest.getData_nascimento());
+        user.setData_admissao(usuarioRequest.getData_admissao());
+        user.setCelular(usuarioRequest.getCelular());
+        user.setSalario(usuarioRequest.getSalario());
+        user.setCargo(usuarioRequest.getCargo());
+        user.setUsuario(usuarioRequest.getUsuario());
+        user.setSenha(usuarioRequest.getSenha());
+        
+        usuarioRepository.save(user);
+        return user;
+    }
 }

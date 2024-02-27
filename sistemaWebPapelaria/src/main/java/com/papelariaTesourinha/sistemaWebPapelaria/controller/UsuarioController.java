@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -40,5 +41,12 @@ public class UsuarioController {
     public  ResponseEntity<UsuarioEntity> getUsuarioById(@PathVariable Integer id){
         UsuarioEntity usuario = usuarioService.getUsuarioId(id);
         return new ResponseEntity<>(usuario, HttpStatus.OK);
+    }
+    
+    @PutMapping("/atualizar/{id}")
+    public ResponseEntity<UsuarioEntity> atualizarUsuario(@PathVariable Integer id, @RequestBody UsuarioEntity usuario){
+        var usuarioAtualizado = usuarioService.atualizarUsuario(id, usuario);
+        
+        return new ResponseEntity<>(usuarioAtualizado, HttpStatus.OK);
     }
 }
