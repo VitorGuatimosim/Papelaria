@@ -34,4 +34,18 @@ public class VendaService {
     public List<VendaEntity> listarTodasVendas(){
         return vendaRepository.findAll();
     }
+    
+    public VendaEntity atualizarVenda(Integer venId, VendaEntity vendaRequest){
+        VendaEntity ven = getVendaId(venId);
+        
+        ven.setValor_total(vendaRequest.getValor_total());
+        ven.setData_venda(vendaRequest.getData_venda());
+        ven.setHora_venda(vendaRequest.getHora_venda());
+        ven.setForma_pagamento(vendaRequest.getForma_pagamento());
+        ven.setNumero_parcelas(vendaRequest.getNumero_parcelas());
+        ven.setId_usuario_fk(vendaRequest.getId_usuario_fk());
+        
+        vendaRepository.save(ven);
+        return ven;
+    }
 }
