@@ -2,6 +2,7 @@ package com.papelariaTesourinha.sistemaWebPapelaria.controller;
 
 import com.papelariaTesourinha.sistemaWebPapelaria.data.UsuarioEntity;
 import com.papelariaTesourinha.sistemaWebPapelaria.service.UsuarioService;
+import jakarta.validation.Valid;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -26,7 +27,7 @@ public class UsuarioController {
     UsuarioService usuarioService;
     
     @PostMapping("/adicionar")
-    public ResponseEntity<UsuarioEntity> addUsuario(@RequestBody UsuarioEntity user){
+    public ResponseEntity<UsuarioEntity> addUsuario(@Valid @RequestBody UsuarioEntity user){
         var novoUsuario = usuarioService.criarUsuario(user);
         
         return new ResponseEntity<>(novoUsuario, HttpStatus.CREATED);

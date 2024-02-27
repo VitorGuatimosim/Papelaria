@@ -6,6 +6,7 @@ package com.papelariaTesourinha.sistemaWebPapelaria.service;
 
 import com.papelariaTesourinha.sistemaWebPapelaria.data.VendaEntity;
 import com.papelariaTesourinha.sistemaWebPapelaria.data.VendaRepository;
+import com.papelariaTesourinha.sistemaWebPapelaria.exception.ResourceNotFoundException;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,7 +29,7 @@ public class VendaService {
     }
     
     public VendaEntity getVendaId(Integer venId){
-        return vendaRepository.findById(venId).orElse(null);
+        return vendaRepository.findById(venId).orElseThrow(() -> new ResourceNotFoundException("Venda não encontrada! ID:" + venId));
     }
     
     public List<VendaEntity> listarTodasVendas(){

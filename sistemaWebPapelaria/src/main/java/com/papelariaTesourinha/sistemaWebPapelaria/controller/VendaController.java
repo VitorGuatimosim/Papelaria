@@ -6,6 +6,7 @@ package com.papelariaTesourinha.sistemaWebPapelaria.controller;
 
 import com.papelariaTesourinha.sistemaWebPapelaria.data.VendaEntity;
 import com.papelariaTesourinha.sistemaWebPapelaria.service.VendaService;
+import jakarta.validation.Valid;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,7 +31,7 @@ public class VendaController {
     VendaService vendaService;
     
     @PostMapping("/adicionar")
-    public ResponseEntity<VendaEntity> addVenda(@RequestBody VendaEntity ven){
+    public ResponseEntity<VendaEntity> addVenda(@Valid @RequestBody VendaEntity ven){
         var novaVenda = vendaService.criarVenda(ven);
         
         return new ResponseEntity<>(novaVenda, HttpStatus.CREATED);

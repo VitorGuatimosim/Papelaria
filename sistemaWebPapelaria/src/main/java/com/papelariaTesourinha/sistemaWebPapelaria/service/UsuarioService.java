@@ -2,6 +2,7 @@ package com.papelariaTesourinha.sistemaWebPapelaria.service;
 
 import com.papelariaTesourinha.sistemaWebPapelaria.data.UsuarioEntity;
 import com.papelariaTesourinha.sistemaWebPapelaria.data.UsuarioRepository;
+import com.papelariaTesourinha.sistemaWebPapelaria.exception.ResourceNotFoundException;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,7 +25,7 @@ public class UsuarioService {
     }
     
      public UsuarioEntity getUsuarioId(Integer userId){
-        return usuarioRepository.findById(userId).orElse(null);
+        return usuarioRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException("Usuário não encontrado! ID:" + userId));
     }
     
     public List<UsuarioEntity> listarTodosUsuarios(){

@@ -2,6 +2,7 @@ package com.papelariaTesourinha.sistemaWebPapelaria.service;
 
 import com.papelariaTesourinha.sistemaWebPapelaria.data.ProdutoEntity;
 import com.papelariaTesourinha.sistemaWebPapelaria.data.ProdutoRepository;
+import com.papelariaTesourinha.sistemaWebPapelaria.exception.ResourceNotFoundException;
 
 import java.util.List;
 
@@ -27,7 +28,7 @@ public class ProdutoService {
     }
     
     public ProdutoEntity getProdutoId(Integer prodId){
-        return produtoRepository.findById(prodId).orElse(null);
+        return produtoRepository.findById(prodId).orElseThrow(() -> new ResourceNotFoundException("Produto não encontrado! ID:" + prodId));
     }
     
     public List<ProdutoEntity> listarTodosProdutos(){

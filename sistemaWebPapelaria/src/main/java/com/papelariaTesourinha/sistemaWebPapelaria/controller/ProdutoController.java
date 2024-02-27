@@ -2,6 +2,7 @@ package com.papelariaTesourinha.sistemaWebPapelaria.controller;
 
 import com.papelariaTesourinha.sistemaWebPapelaria.data.ProdutoEntity;
 import com.papelariaTesourinha.sistemaWebPapelaria.service.ProdutoService;
+import jakarta.validation.Valid;
 
 import java.util.List;
 
@@ -28,7 +29,7 @@ public class ProdutoController {
     ProdutoService produtoService;
     
     @PostMapping("/adicionar")
-    public ResponseEntity<ProdutoEntity> addProduto(@RequestBody ProdutoEntity prod){
+    public ResponseEntity<ProdutoEntity> addProduto(@Valid @RequestBody ProdutoEntity prod){
         var novoProduto = produtoService.criarProduto(prod);
         
         return new ResponseEntity<>(novoProduto, HttpStatus.CREATED);
