@@ -6,6 +6,7 @@ package com.papelariaTesourinha.sistemaWebPapelaria.service;
 
 import com.papelariaTesourinha.sistemaWebPapelaria.data.VendaEntity;
 import com.papelariaTesourinha.sistemaWebPapelaria.data.VendaRepository;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,5 +25,13 @@ public class VendaService {
         vendaRepository.save(ven);
         
         return ven;
+    }
+    
+    public VendaEntity getVendaId(Integer venId){
+        return vendaRepository.findById(venId).orElse(null);
+    }
+    
+    public List<VendaEntity> listarTodasVendas(){
+        return vendaRepository.findAll();
     }
 }
