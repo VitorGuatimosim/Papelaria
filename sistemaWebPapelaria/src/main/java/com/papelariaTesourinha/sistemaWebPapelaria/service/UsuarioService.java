@@ -47,4 +47,10 @@ public class UsuarioService {
         usuarioRepository.save(user);
         return user;
     }
+     
+     public void deletarUsuario(Integer userId){
+        UsuarioEntity user = getUsuarioId(userId);
+        
+        usuarioRepository.deleteById(user.getId());
+    }
 }
