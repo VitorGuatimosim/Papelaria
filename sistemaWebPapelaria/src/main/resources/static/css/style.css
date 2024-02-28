@@ -183,7 +183,11 @@ footer{
     margin-top: 20px;
     max-width: 100%;
     overflow: auto;
-    height: 450px;
+    height: 600px;
+}
+
+.tabela-lista th{
+    text-align: center;
 }
 
 .tabela-lista table{
@@ -202,7 +206,6 @@ footer{
     max-width: 100%;
     margin-top: 50px;
 }
-
 
 /* ESTILIZAÇÃO DA PÁGINA LOGIN.HTML */
 
@@ -247,6 +250,10 @@ footer{
 
 .menus .btn{
     width: 200px;
+}
+
+.btn{
+    width: 200px;    
 }
 
 .menu-venda{

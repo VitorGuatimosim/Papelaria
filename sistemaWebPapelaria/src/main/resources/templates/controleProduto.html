@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
     <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.css}"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"/>
     <link rel="stylesheet" th:href="@{/css/style.css}"/>
 
     <title>Controle de Produto</title>
@@ -15,9 +16,16 @@
     <div class="main-content">
         <h2 class="titulo-pagina">ESTOQUE</h2>
         <div class="container">
-            <div class="div-pesquisa">
-                <label for="nomeProduto">Nome</label>
-                <input class="rounded form-control" type="text" id="nomeProduto" name="nomeProduto" placeholder="Pesquisar por nome do produto"/>
+            <div class="row">
+                <div class="col-md-3 div-pesquisa">
+                    <label for="nomeProduto">Nome</label>
+                    <input class="rounded form-control" type="text" id="nomeProduto" name="nomeProduto" placeholder="Pesquisar por nome do produto"/>
+                </div>
+                <div class="col-md-3"></div>
+                <div class="col-md-3">
+                    <br/>
+                    <a th:href="@{/cadastroProduto}"><button class="btn btn-primary rounded-pill px-3">ADICIONAR</button></a>
+                </div>
             </div>
 
             <div class="row tabela-lista">
@@ -29,30 +37,18 @@
                             <th>Valor</th>
                             <th>Quantidade</th>
                             <th>Categoria</th>
+                            <th colspan="2">Funções</th>
                         </tr>
                     </thead>
-    
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Folha A4</td>
-                            <td>2,99</td>
-                            <td>25</td>
-                            <td>Papel</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Caderno 96 folhas</td>
-                            <td>9,99</td>
-                            <td>25</td>
-                            <td>Material Escolar</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Lápis</td>
-                            <td>2,00</td>
-                            <td>50</td>
-                            <td>Material Escolar</td>
+                        <tr th:each="prod : ${listarProdutos}">
+                            <td th:text="${prod.id}"/>
+                            <td th:text="${prod.nome}"/>
+                            <td th:text="${prod.valor}"/>
+                            <td th:text="${prod.quantidade}"/>
+                            <td th:text="${prod.categoria}"/>
+                            <td><a th:href="@{/editarProduto/{id}(id=${prod.id})}"><i class="bi bi-pencil" style="font-size: 1rem;" title="Editar"/></a></td>
+                            <td><a th:href="@{/deletarProduto/{id}(id=${prod.id})}"><i class="bi bi-x-lg" style="font-size: 1rem; color: red;" title="Apagar"/></a></td>
                         </tr>
                     </tbody>
                 </table>
@@ -66,7 +62,7 @@
                             <!--<a th:href="@{/}"><button class="btn btnSecundario btn-primary rounded-pill px-3">CANCELAR</button></a>-->
                         </div>
                         <div class="col-md-6">
-                            <a th:href="@{/editarProduto}"><button class="btn btn-primary rounded-pill px-3">EDITAR</button></a>
+                            
                         </div>
                     </div>
                 </div>

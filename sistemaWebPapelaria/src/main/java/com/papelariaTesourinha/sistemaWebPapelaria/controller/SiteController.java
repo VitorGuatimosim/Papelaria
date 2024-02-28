@@ -4,8 +4,17 @@
  */
 package com.papelariaTesourinha.sistemaWebPapelaria.controller;
 
+import com.papelariaTesourinha.sistemaWebPapelaria.data.ProdutoEntity;
+import com.papelariaTesourinha.sistemaWebPapelaria.service.ProdutoService;
+import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 /**
  *
@@ -14,6 +23,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class SiteController {
+    @Autowired
+    ProdutoService produtoService;
+    
     @GetMapping("/")
     public String viewHomePage(){
         return "home";
@@ -35,17 +47,44 @@ public class SiteController {
     }
     
     @GetMapping("/cadastroProduto")
-    public String cadastroProduto(){
+    public String cadastroProduto(Model model){
+        ProdutoEntity prod = new ProdutoEntity();
+        
+        model.addAttribute("produto", prod);
         return "cadastroProduto";
     }
     
+    @PostMapping("/salvarProduto")
+    public String salvarProduto(@Valid @ModelAttribute("produto") ProdutoEntity prod, BindingResult result){
+        
+        
+        if(prod.getId()== null){
+            if(result.hasErrors()){
+                return "cadastroProduto";
+            }else{
+                produtoService.criarProduto(prod);
+            }
+        }else{
+            if(result.hasErrors()){
+                return "editarProduto";
+            }else{
+                produtoService.atualizarProduto(prod.getId(), prod);
+            }
+        }
+        
+        return "redirect:/";
+    }
+
     @GetMapping("/controleVenda")
     public String controleVenda(){
         return "controleVenda";
     }
     
     @GetMapping("/controleProduto")
-    public String controleProduto(){
+    public String controleProduto(Model model){
+        
+        model.addAttribute("listarProdutos", produtoService.listarTodosProdutos());
+        
         return "controleProduto";
     }
     
@@ -64,8 +103,16 @@ public class SiteController {
         return "editarUsuario";
     }
     
-    @GetMapping("/editarProduto")
-    public String editarProduto(){
+    @GetMapping("/editarProduto/{id}")
+    public String editarProduto(@PathVariable(value="id") Integer id, Model model){
+        ProdutoEntity prod = produtoService.getProdutoId(id);
+        model.addAttribute("produto", prod);
         return "editarProduto";
+    }
+    
+    @GetMapping("/deletarProduto/{id}")
+    public String deletarProduto(@PathVariable(value="id") Integer id){
+        produtoService.deletarProduto(id);
+        return "redirect:/";
     }
 }
