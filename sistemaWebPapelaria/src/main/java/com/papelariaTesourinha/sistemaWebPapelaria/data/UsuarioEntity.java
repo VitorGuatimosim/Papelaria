@@ -49,7 +49,7 @@ public class UsuarioEntity {
     private String cargo;
     
     @NotBlank(message="Usuário obrigatório")
-    private String usuario;
+    private String usuario_nome;
     
     @NotBlank(message="Senha obrigatória")
     private String senha;

@@ -42,7 +42,7 @@ public class UsuarioService {
         user.setCelular(usuarioRequest.getCelular());
         user.setSalario(usuarioRequest.getSalario());
         user.setCargo(usuarioRequest.getCargo());
-        user.setUsuario(usuarioRequest.getUsuario());
+        user.setUsuario_nome(usuarioRequest.getUsuario_nome());
         user.setSenha(usuarioRequest.getSenha());
         
         usuarioRepository.save(user);

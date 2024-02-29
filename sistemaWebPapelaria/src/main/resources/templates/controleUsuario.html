@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
     <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.css}"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"/>
     <link rel="stylesheet" th:href="@{/css/style.css}"/>
 
     <title>Controle de Usuário</title>
@@ -15,11 +16,18 @@
     <div class="main-content">
         <h2 class="titulo-pagina">LISTA DE USUÁRIOS CADASTRADOS</h2>
         <div class="container">
-            <div class="div-pesquisa">
-                <label for="nomeFuncionario">Nome</label>
-                <input class="rounded form-control" type="text" id="nomeFuncionario" name="nomeFuncionario" placeholder="Pesquisar por nome do funcionário"/>
+            
+            <div class="row">
+                <div class="col-md-3 div-pesquisa">
+                    <label for="nomeFuncionario">Nome</label>
+                    <input class="rounded form-control" type="text" id="nomeFuncionario" name="nomeFuncionario" placeholder="Pesquisar por nome do funcionário"/>
+                </div>
+                <div class="col-md-3"></div>
+                <div class="col-md-3">
+                    <br/>
+                    <a th:href="@{/cadastroUsuario}"><button class="btn btn-primary rounded-pill px-3">ADICIONAR</button></a>
+                </div>
             </div>
-
             <div class="row tabela-lista">
                 <table>
                     <thead>
@@ -34,45 +42,24 @@
                             <th>Cargo</th>
                             <th>Usuário</th>
                             <th>Senha</th>
+                            <th colspan="2">Funções</th>
                         </tr>
                     </thead>
     
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Jonas</td>
-                            <td>000.000.000-99</td>
-                            <td>21/02/1995</td>
-                            <td>30/05/2017</td>
-                            <td>99448-4486</td>
-                            <td>1682,00</td>
-                            <td>Vendedor</td>
-                            <td>jonas</td>
-                            <td>1234</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Bob</td>
-                            <td>203.020.104-99</td>
-                            <td>12/03/1989</td>
-                            <td>05/08/2007</td>
-                            <td>91428-4482</td>
-                            <td>4500,00</td>
-                            <td>Gerente</td>
-                            <td>bob</td>
-                            <td>1234</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Laura</td>
-                            <td>123.405.102-99</td>
-                            <td>03/03/2000</td>
-                            <td>12/12/2021</td>
-                            <td>93141-4688</td>
-                            <td>1682,00</td>
-                            <td>Vendedor</td>
-                            <td>laura</td>
-                            <td>1234</td>
+                        <tr th:each="user : ${listarUsuarios}">
+                            <td th:text="${user.id}"/>
+                            <td th:text="${user.nome}"/>
+                            <td th:text="${user.cpf}"/>
+                            <td th:text="${user.data_nascimento}"/>
+                            <td th:text="${user.data_admissao}"/>
+                            <td th:text="${user.celular}"/>
+                            <td th:text="${user.salario}"/>
+                            <td th:text="${user.cargo}"/>
+                            <td th:text="${user.usuario_nome}"/>
+                            <td th:text="${user.senha}"/>
+                            <td><a th:href="@{/editarUsuario/{id}(id=${user.id})}"><i class="bi bi-pencil" style="font-size: 1rem;" title="Editar"/></a></td>
+                            <td><a th:href="@{/deletarUsuario/{id}(id=${user.id})}"><i class="bi bi-x-lg" style="font-size: 1rem; color: red;" title="Apagar"/></a></td>
                         </tr>
                     </tbody>
                 </table>
@@ -86,7 +73,7 @@
                             <!--<a th:href="@{/}"><button class="btn btnSecundario btn-primary rounded-pill px-3">CANCELAR</button></a>-->
                         </div>
                         <div class="col-md-6">
-                            <a th:href="@{/editarUsuario}"><button class="btn btn-primary rounded-pill px-3">EDITAR</button></a>
+                            
                         </div>
                     </div>
                 </div>
