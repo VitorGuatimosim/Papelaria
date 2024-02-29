@@ -16,33 +16,37 @@
         <h2 class="titulo-pagina">CADASTRO DE VENDA</h2>
 
         <div class="container">
-            <form class="form-padrao">
+            <form class="form-padrao" action="#" th:action="@{/salvarVenda}" th:object="${venda}" method="POST">
                 <div class="row">
                     <div class="col-md-3"></div>
                     <div class="col-md-6">
                         <div class="row">
                             <div class="col-md-6">
                                 <label for="valor">Valor da Venda</label><br/>
-                                <input class="rounded form-control" type="text" id="valor" name="valor" maxlength="15" pattern="([0-9]{1,3}\.)?[0-9]{1,3},[0-9]{2}$" 
-                                       placeholder="Informe o valor x,xx ou x.xxx,xx"/>
+                                <input th:field="*{valor_total}" class="rounded form-control" type="text" id="valor" name="valor" maxlength="15" pattern="[0-9]+\.[0-9]{2}" 
+                                       placeholder="Informe o valor x.xx"/>
+                                <span class="text-danger" th:if="${#fields.hasErrors('valor_total')}" th:errors="*{valor_total}"></span>
                                 <br/>
 
                                 <label for="horaVenda">Hora da Venda</label><br/>
-                                <input class="rounded form-control" type="time" id="horaVenda" name="horaVenda"/>
+                                <input th:field="*{hora_venda}" class="rounded form-control" type="time" id="horaVenda" name="horaVenda"/>
+                                <span class="text-danger" th:if="${#fields.hasErrors('hora_venda')}" th:errors="*{hora_venda}"></span>
                                 <br/>
 
                                 <label for="numeroParcela">Número de Parcelas</label><br/>
-                                <input class="rounded form-control" type="number" id="numeroParcela" name="numeroParcela" 
+                                <input th:field="*{numero_parcelas}" class="rounded form-control" type="number" id="numeroParcela" name="numeroParcela" 
                                        placeholder="Informe um número inteiro, ex: 2."/>
+                                <span class="text-danger" th:if="${#fields.hasErrors('numero_parcelas')}" th:errors="*{numero_parcelas}"></span>
                             </div>
 
                             <div class="col-md-6">
                                 <label for="dataVenda">Data da Venda</label><br/>
-                                <input class="rounded form-control" type="date" id="dataVenda" name="dataVenda"/>
+                                <input th:field="*{data_venda}" class="rounded form-control" type="date" id="dataVenda" name="dataVenda"/>
+                                <span class="text-danger" th:if="${#fields.hasErrors('data_venda')}" th:errors="*{data_venda}"></span>
                                 <br/>
-
+                                
                                 <label for="formaPagamento">Forma de Pagamento</label><br/>
-                                <select class="form-select" name="formaPagamento" id="formaPagamento">
+                                <select th:field="*{forma_pagamento}" class="form-select" name="formaPagamento" id="formaPagamento">
                                     <option value="cartaoCredito">Cartão de Crédito</option>
                                     <option value="cartaoDebito">Cartão de Débito</option>
                                     <option value="Dinheiro">Dinheiro</option>

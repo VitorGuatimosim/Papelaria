@@ -6,8 +6,10 @@ package com.papelariaTesourinha.sistemaWebPapelaria.controller;
 
 import com.papelariaTesourinha.sistemaWebPapelaria.data.ProdutoEntity;
 import com.papelariaTesourinha.sistemaWebPapelaria.data.UsuarioEntity;
+import com.papelariaTesourinha.sistemaWebPapelaria.data.VendaEntity;
 import com.papelariaTesourinha.sistemaWebPapelaria.service.ProdutoService;
 import com.papelariaTesourinha.sistemaWebPapelaria.service.UsuarioService;
+import com.papelariaTesourinha.sistemaWebPapelaria.service.VendaService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,6 +31,8 @@ public class SiteController {
     ProdutoService produtoService;
     @Autowired
     UsuarioService usuarioService;
+    @Autowired
+    VendaService vendaService;
     
     @GetMapping("/")
     public String viewHomePage(){
@@ -43,18 +47,50 @@ public class SiteController {
     /* CONTROLLER VENDA */
     
     @GetMapping("/cadastroVenda")
-    public String cadastroVenda(){
+    public String cadastroVenda(Model model){
+        VendaEntity ven = new VendaEntity();
+        
+        model.addAttribute("venda", ven);
+        
         return "cadastroVenda";
     }
     
+    @PostMapping("/salvarVenda")
+    public String salvarVenda(@Valid @ModelAttribute("venda") VendaEntity ven, BindingResult result){
+        if(ven.getId()== null){
+            if(result.hasErrors()){
+                return "cadastroVenda";
+            }else{
+                vendaService.criarVenda(ven);
+            }
+        }else{
+            if(result.hasErrors()){
+                return "editarVenda";
+            }else{
+                vendaService.atualizarVenda(ven.getId(), ven);
+            }
+        }
+        
+        return "redirect:/";
+    }
+    
     @GetMapping("/controleVenda")
-    public String controleVenda(){
+    public String controleVenda(Model model){
+        model.addAttribute("listarVendas", vendaService.listarTodasVendas());
         return "controleVenda";
     }
     
-    @GetMapping("/editarVenda")
-    public String editarVenda(){
+    @GetMapping("/editarVenda/{id}")
+    public String editarVenda(@PathVariable(value="id") Integer id, Model model){
+        VendaEntity ven = vendaService.getVendaId(id);
+        model.addAttribute("venda", ven);
         return "editarVenda";
+    }
+    
+    @GetMapping("/deletarVenda/{id}")
+    public String deletarVenda(@PathVariable(value="id") Integer id){
+        vendaService.deletarVenda(id);
+        return "redirect:/";
     }
     
     /* CONTROLLER USUÁRIO*/

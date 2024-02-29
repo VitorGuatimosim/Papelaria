@@ -11,6 +11,7 @@ import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  *
@@ -40,7 +41,4 @@ public class VendaEntity {
     
     @NotNull(message="Número de parcelas obrigatório")
     private Integer numero_parcelas;
-    
-    @NotNull(message="Usuário obrigatório")
-    private Integer id_usuario_fk;
 }

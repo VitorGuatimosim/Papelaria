@@ -60,7 +60,7 @@
 
                                 <label for="salario">Salário</label><br/>
                                 <input th:field="*{salario}"class="rounded form-control" type="text" id="salario" name="salario"
-                                       maxlength="15" pattern="[0-9]+\.[0-9]{2}" placeholder="Informe o valor x,xx ou x.xxx,xx"/>
+                                       maxlength="15" pattern="[0-9]+\.[0-9]{2}" placeholder="Informe o valor x.xx"/>
                                 <span class="text-danger" th:if="${#fields.hasErrors('salario')}" th:errors="*{salario}"></span>
                                 <br/>
 
