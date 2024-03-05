@@ -182,16 +182,16 @@ public class SiteController {
         return "controleProduto";
     }
         
-    @GetMapping("/editarProduto/{id}")
+    @GetMapping("/editarProduto/id={id}")
     public String editarProduto(@PathVariable(value="id") Integer id, Model model){
         ProdutoEntity prod = produtoService.getProdutoId(id);
         model.addAttribute("produto", prod);
         return "editarProduto";
     }
     
-    @GetMapping("/deletarProduto/{id}")
+    @GetMapping("/deletarProduto/id={id}")
     public String deletarProduto(@PathVariable(value="id") Integer id){
         produtoService.deletarProduto(id);
-        return "redirect:/";
+        return "redirect:/controleProduto";
     }
 }

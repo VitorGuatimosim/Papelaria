@@ -78,6 +78,10 @@ header .nav-menu .btn{
     max-width: 100%;
 }
 
+.aBtn{
+    margin-top: 50px;
+}
+
 .btn{
     width: 100px;
     padding-left: 12px;
@@ -148,7 +152,6 @@ footer{
 .titulo-pagina{
     margin-bottom: 50px;
 }
-
 
 /* ESTILIZAÇÃO DO FORMULÁRIO PADRÃO (CADASTRO/EDIÇÃO) */
 

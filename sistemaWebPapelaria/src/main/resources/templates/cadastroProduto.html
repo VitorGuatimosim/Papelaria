@@ -16,32 +16,29 @@
         <h2 class="titulo-pagina">CADASTRO DE PRODUTO</h2>
 
         <div class="container">
-            <form class="form-padrao" action="#" th:action="@{/salvarProduto}" th:object="${produto}" method="POST">
+            <form class="form-padrao" id="formCriarProduto">
                 <div class="row">
                     <div class="col-md-3"></div>
                     <div class="col-md-6">
                         <div class="row">
                             <div class="col-md-6">
                                 <label for="nomeProduto">Nome</label><br/>
-                                <input th:field="*{nome}" class="rounded form-control" type="text" id="nomeProduto" name="nomeProduto" pattern="[A-Za-z\s]+$" placeholder="Somente letras!"/>
-                                <span class="text-danger" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
+                                <input class="rounded form-control" type="text" id="txt_nome" name="nomeProduto" pattern="[A-Za-z\s]+$" placeholder="Somente letras!"/>
                                 <br/>
 
                                 <label for="valor">Valor</label><br/>
-                                <input th:field="*{valor}" class="rounded form-control" type="text" id="valor" name="valor"
+                                <input class="rounded form-control" type="text" id="txt_valor" name="valor"
                                        maxlength="15" pattern="[0-9]+\.[0-9]{2}" placeholder="Informe o valor x.xx"/>
-                                <span class="text-danger" th:if="${#fields.hasErrors('valor')}" th:errors="*{valor}"></span>
                                 <br/>
                             </div>
 
                             <div class="col-md-6">
                                 <label for="quantidade">Quantidade</label><br/>
-                                <input th:field="*{quantidade}" class="rounded form-control" type="number" id="quantidade" name="quantidade" placeholder="Informe um número inteiro, ex: 2."/>
-                                <span class="text-danger" th:if="${#fields.hasErrors('quantidade')}" th:errors="*{quantidade}"></span>
+                                <input class="rounded form-control" type="number" id="txt_quantidade" name="quantidade" placeholder="Informe um número inteiro, ex: 2."/>
                                 <br/>
 
                                 <label for="categoria">Categoria</label><br/>
-                                <select th:field="*{categoria}" class="form-select" name="categoria" id="categoria">
+                                <select class="form-select" name="categoria" id="txt_categoria">
                                     <option value="materialEscolar">Material Escolar</option>
                                     <option value="papel">Papel</option>
                                     <option value="eletronicos">Eletrônicos</option>
@@ -57,7 +54,7 @@
                     <div class="col-md-6">
                         <div class="row">
                             <div class="col-md-6">
-                                <!--<a th:href="@{/}"><button class="btn btnSecundario btn-primary rounded-pill px-3">CANCELAR</button></a>-->
+                                <a class="aBtn btn btnSecundario btn-primary rounded-pill px-3" th:href="@{/controleProduto}">CANCELAR</a>
                             </div>
                             <div class="col-md-6">
                                 <input type="submit" value="ENVIAR" class="btn btn-primary rounded-pill px-3"/>
@@ -70,5 +67,7 @@
         </div>        
     </div>
     <footer th:insert="~{footer.html}"></footer>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> 
+     <script th:src="@{/js/script.js}"></script>
 </body>
 </html>

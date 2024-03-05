@@ -44,7 +44,6 @@ public class VendaService {
         ven.setHora_venda(vendaRequest.getHora_venda());
         ven.setForma_pagamento(vendaRequest.getForma_pagamento());
         ven.setNumero_parcelas(vendaRequest.getNumero_parcelas());
-        ven.setId_usuario_fk(vendaRequest.getId_usuario_fk());
         
         vendaRepository.save(ven);
         return ven;

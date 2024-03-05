@@ -444,11 +444,11 @@ label {
   display: inline-block;
 }
 
-button {
+button, .aBtn{
   border-radius: 0;
 }
 
-button:focus:not(:focus-visible) {
+button:focus:not(:focus-visible), .aBtn:focus:not(:focus-visible){
   outline: 0;
 }
 
@@ -456,7 +456,8 @@ input,
 button,
 select,
 optgroup,
-textarea {
+textarea,
+.aBtn{
   margin: 0;
   font-family: inherit;
   font-size: inherit;
@@ -464,7 +465,8 @@ textarea {
 }
 
 button,
-select {
+select,
+.aBtn{
   text-transform: none;
 }
 
