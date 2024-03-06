@@ -77,21 +77,15 @@ $(document).ready(function(){
                     return;
                 }else{
                     let categoria = $('#txt_categoria').val();
-                    if(!categoria){
-                        alert('Por favor, preencha o ano de lançamento do produto');
-                        return;
-                    }else{
-                        let produto = {
-                            id: '',
-                            nome: nome,
-                            valor: valor,
-                            quantidade: quantidade,
-                            categoria: categoria
-                        };
-                        criarProduto(produto);
-                    }
+                    let produto = {
+                        id: '',
+                        nome: nome,
+                        valor: valor,
+                        quantidade: quantidade,
+                        categoria: categoria
+                    };
+                    criarProduto(produto);
                 }
-           
             }
         }   
     });
@@ -413,6 +407,176 @@ $(document).ready(function(){
         });        
     }
     
+    /*  SCRIPTS VENDA */
+    
+    function carregarVendas(){
+        $.get('http://localhost:8080/venda/listar', function(data){
+                $('#tabelaVendas tbody').empty();
+                
+                for(let i = 0; i < data.length; i++){
+                    let venda = data[i];
+                    let id = $('<td>').text(venda.id);
+                    let valor = $('<td>').text(venda.valor_total);
+                    let hora_venda = $('<td>').text(venda.hora_venda);
+                    let numero_parcelas = $('<td>').text(venda.numero_parcelas);
+                    let data_venda = $('<td>').text(venda.data_venda);
+                    let forma_pagamento = $('<td>').text(venda.forma_pagamento);
+                    let botaoAtualizar = $('<i>')
+                            .addClass('bi bi-pencil')                            
+                            .click(function(){
+                                window.location.href = 'editarVenda/id='+venda.id;
+                            });;
+                    let botaoDeletar = $('<i>')
+                            .addClass('bi bi-x-lg')
+                            .click(function(){
+                                window.location.href = 'deletarVenda/id='+venda.id;
+                            });
+                    let aBotaoAtualizar = $('<a href="#">').append(botaoAtualizar);
+                    let aBotaoDeletar = $('<a href="#">').append(botaoDeletar);
+                    
+                    let tdBotaoAtualizar = $('<td>').append(aBotaoAtualizar);
+                    let tdBotaoDeletar = $('<td>').append(aBotaoDeletar);
+
+                    let tr = $('<tr>')
+                            .attr('data-id', venda.id)
+                            .append(id)
+                            .append(valor)
+                            .append(hora_venda)
+                            .append(numero_parcelas)
+                            .append(data_venda)
+                            .append(forma_pagamento)
+                            .append(tdBotaoAtualizar)
+                            .append(tdBotaoDeletar);
+                    $('#tabelaVendas tbody').append(tr);
+                }
+        });
+    }
+    
+    function criarVenda(venda){
+        $.ajax({
+            url: 'http://localhost:8080/venda/adicionar',
+            method: 'POST',
+            contentType: "application/json",
+            data: JSON.stringify(venda),
+            error: function(data){
+                alert("Não foi possível cadastrar a venda no API!");
+                console.log(data);
+            },            
+            complete: function(){                   
+                alert('Venda Cadastrada com sucesso!');
+                window.location="http://localhost:8080/controleVenda";
+            }            
+        });
+    }
+    
+    $('#formCriarVenda').submit(function(event){
+        event.preventDefault();
+        
+        let valor = $('#txt_valor').val();
+        if(!valor){
+            alert('Por favor, preencha o valor da venda');
+            return;
+        }else{
+            let hora_venda = $('#txt_hora_venda').val();
+            
+            if(!hora_venda){
+            alert('Por favor, preencha a hora da venda');
+            return;
+            }else{                
+                let numero_parcelas = $('#txt_numero_parcelas').val();
+                
+                if(!numero_parcelas){
+                alert('Por favor, preencha o número de parcelas da venda');
+                return;
+                }else{                    
+                    let data_venda = $('#txt_data_venda').val();
+                    
+                    if(!data_venda){
+                    alert('Por favor, preencha a data da venda');
+                    return;
+                    }else{
+                        let forma_pagamento = $('#txt_forma_pagamento').val();
+                        let venda = {
+                            id: '',
+                            valor_total: valor,
+                            hora_venda: hora_venda,
+                            numero_parcelas: numero_parcelas,
+                            data_venda: data_venda,
+                            forma_pagamento: forma_pagamento
+                        };
+                        criarVenda(venda);
+                    }
+                }
+            }
+        }         
+    });
+    
+    $('#formEditarVenda').submit(function(event){
+        event.preventDefault();
+        let urlId = queryString();
+        let valor = $('#txt_valor').val();
+        if(!valor){
+            alert('Por favor, preencha o valor da venda');
+            return;
+        }else{
+            let hora_venda = $('#txt_hora_venda').val();
+            
+            if(!hora_venda){
+            alert('Por favor, preencha a hora da venda');
+            return;
+            }else{                
+                let numero_parcelas = $('#txt_numero_parcelas').val();
+                
+                if(!numero_parcelas){
+                alert('Por favor, preencha o número de parcelas da venda');
+                return;
+                }else{                    
+                    let data_venda = $('#txt_data_venda').val();
+                    
+                    if(!data_venda){
+                    alert('Por favor, preencha a data da venda');
+                    return;
+                    }else{
+                        
+                        let forma_pagamento = $('#txt_forma_pagamento').val();
+                        let venda = {
+                            id: '',
+                            valor_total: valor,
+                            hora_venda: hora_venda,
+                            numero_parcelas: numero_parcelas,
+                            data_venda: data_venda,
+                            forma_pagamento: forma_pagamento
+                        };
+                        atualizarVenda(urlId, venda);
+                    }
+                }
+            }
+        }
+    });
+    
+    function atualizarVenda(id, venda){
+        $.ajax({           
+           url: 'http://localhost:8080/venda/atualizar/'+id,
+           method: 'PUT',
+           contentType: 'application/json',
+           data: JSON.stringify({
+                   id: id,
+                   valor_total: venda.valor_total,
+                   hora_venda: venda.hora_venda,
+                   numero_parcelas: venda.numero_parcelas,
+                   data_venda: venda.data_venda,
+                   forma_pagamento: venda.forma_pagamento
+            }),
+            error: function(){
+                alert('deu erro');
+            },
+            complete: function(){
+                alert('Venda Atualizada com sucesso!');
+                window.location="http://localhost:8080/controleVenda";
+            }
+        });        
+    }
+    
     /*  SCRIPTS GERAIS */
     
     function queryString() {  
@@ -421,7 +585,21 @@ $(document).ready(function(){
               return urlSplit[1];             
     }
     
-    carregarProdutos();
-    carregarUsuarios();
+    function carregarDados(){
+        var loc = window.location.href;
+        let urlSplit = loc.split('/');
+        switch(urlSplit[3]){
+            case "controleProduto":
+                carregarProdutos();
+                break;
+            case "controleUsuario":
+                carregarUsuarios();
+                break;
+            case "controleVenda":
+                carregarVendas();
+                break;
+        }
+    }
+    carregarDados();
 });
 

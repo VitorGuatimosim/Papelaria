@@ -29,7 +29,7 @@
             </div>
            
             <div class="row tabela-lista">
-                <table>
+                <table id="tabelaVendas">
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -42,36 +42,13 @@
                         </tr>
                     </thead>
     
-                    <tbody>
-                        <tr th:each="ven : ${listarVendas}">
-                            <td th:text="${ven.id}"/>
-                            <td th:text="${ven.valor_total}"/>
-                            <td th:text="${ven.hora_venda}"/>
-                            <td th:text="${ven.numero_parcelas}"/>
-                            <td th:text="${ven.data_venda}"/>
-                            <td th:text="${ven.forma_pagamento}"/>
-                            <td><a th:href="@{/editarVenda/{id}(id=${ven.id})}"><i class="bi bi-pencil" style="font-size: 1rem;" title="Editar"/></a></td>
-                            <td><a th:href="@{/deletarVenda/{id}(id=${ven.id})}"><i class="bi bi-x-lg" style="font-size: 1rem; color: red;" title="Apagar"/></a></td>
-                        </tr>
-                    </tbody>
+                    <tbody></tbody>
                 </table>
-            </div>
-
-            <div class="row">
-                <div class="col-md-3"></div>
-                <div class="col-md-6">
-                    <div class="row botao-listagem">
-                        <div class="col-md-6">
-                            <!--<a th:href="@{/}"><button class="btn btnSecundario btn-primary rounded-pill px-3">CANCELAR</button></a>-->
-                        </div>
-                        <div class="col-md-6">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3"></div>
             </div>
         </div>
     </div>
     <footer th:insert="~{footer.html}"></footer>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> 
+     <script th:src="@{/js/script.js}"></script>
 </body>
 </html>
