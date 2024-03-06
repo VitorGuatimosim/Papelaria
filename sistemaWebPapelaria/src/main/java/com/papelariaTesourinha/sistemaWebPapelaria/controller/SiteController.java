@@ -80,17 +80,17 @@ public class SiteController {
         return "controleVenda";
     }
     
-    @GetMapping("/editarVenda/{id}")
+    @GetMapping("/editarVenda/id={id}")
     public String editarVenda(@PathVariable(value="id") Integer id, Model model){
         VendaEntity ven = vendaService.getVendaId(id);
         model.addAttribute("venda", ven);
         return "editarVenda";
     }
     
-    @GetMapping("/deletarVenda/{id}")
+    @GetMapping("/deletarVenda/id={id}")
     public String deletarVenda(@PathVariable(value="id") Integer id){
         vendaService.deletarVenda(id);
-        return "redirect:/";
+        return "redirect:/controleVenda";
     }
     
     /* CONTROLLER USUÁRIO*/
@@ -131,17 +131,17 @@ public class SiteController {
         return "controleUsuario";
     }
     
-    @GetMapping("/editarUsuario/{id}")
+    @GetMapping("/editarUsuario/id={id}")
     public String editarUsuario(@PathVariable(value="id") Integer id, Model model){
         UsuarioEntity user = usuarioService.getUsuarioId(id);
         model.addAttribute("usuario", user);
         return "editarUsuario";
     }
     
-    @GetMapping("/deletarUsuario/{id}")
+    @GetMapping("/deletarUsuario/id={id}")
     public String deletarUsuario(@PathVariable(value="id") Integer id){
         usuarioService.deletarUsuario(id);
-        return "redirect:/";
+        return "redirect:/controleUsuario";
     }
     
     /* CONTROLLER PRODUTO*/

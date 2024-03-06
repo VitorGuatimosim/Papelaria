@@ -1,6 +1,5 @@
 package com.papelariaTesourinha.sistemaWebPapelaria.data;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -8,7 +7,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import java.time.LocalDate;
 import lombok.Data;
 import org.hibernate.validator.constraints.br.CPF; 
 
@@ -32,11 +30,9 @@ public class UsuarioEntity {
     private String cpf;
     
     @NotNull(message="Data de Nascimento obrigatória")
-    @JsonFormat(pattern = "dd/MM/yyyy")
-    private LocalDate data_nascimento;
+    private String data_nascimento;
     
     @NotNull(message="Data de Admissão obrigatória")
-    @JsonFormat(pattern = "dd/MM/yyyy")
     private String data_admissao;
         
     @NotBlank(message="Celular obrigatório")

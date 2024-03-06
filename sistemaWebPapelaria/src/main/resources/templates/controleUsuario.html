@@ -29,7 +29,7 @@
                 </div>
             </div>
             <div class="row tabela-lista">
-                <table>
+                <table id="tabelaUsuarios">
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -46,41 +46,13 @@
                         </tr>
                     </thead>
     
-                    <tbody>
-                        <tr th:each="user : ${listarUsuarios}">
-                            <td th:text="${user.id}"/>
-                            <td th:text="${user.nome}"/>
-                            <td th:text="${user.cpf}"/>
-                            <td th:text="${user.data_nascimento}"/>
-                            <td th:text="${user.data_admissao}"/>
-                            <td th:text="${user.celular}"/>
-                            <td th:text="${user.salario}"/>
-                            <td th:text="${user.cargo}"/>
-                            <td th:text="${user.usuario_nome}"/>
-                            <td th:text="${user.senha}"/>
-                            <td><a th:href="@{/editarUsuario/{id}(id=${user.id})}"><i class="bi bi-pencil" style="font-size: 1rem;" title="Editar"/></a></td>
-                            <td><a th:href="@{/deletarUsuario/{id}(id=${user.id})}"><i class="bi bi-x-lg" style="font-size: 1rem; color: red;" title="Apagar"/></a></td>
-                        </tr>
-                    </tbody>
+                    <tbody></tbody>
                 </table>
-            </div>
-
-            <div class="row">
-                <div class="col-md-3"></div>
-                <div class="col-md-6">
-                    <div class="row botao-listagem">
-                        <div class="col-md-6">
-                            <!--<a th:href="@{/}"><button class="btn btnSecundario btn-primary rounded-pill px-3">CANCELAR</button></a>-->
-                        </div>
-                        <div class="col-md-6">
-                            
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3"></div>
             </div>
         </div>
     </div>
     <footer th:insert="~{footer.html}"></footer>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> 
+     <script th:src="@{/js/script.js}"></script>
 </body>
 </html>
