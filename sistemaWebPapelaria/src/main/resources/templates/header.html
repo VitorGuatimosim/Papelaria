@@ -10,33 +10,40 @@
     </head>
     <body>
         <header>
-            <a th:href="@{/}"><img th:src="@{/images/Logo.png}"/></a>
-
+            <a th:href="@{/home}"><img th:src="@{/images/Logo.png}"/></a>
+            
+            <div class="usuario_nome"><h3 class="nomeLogado"></h3></div>
             <div class="nav-menu">
+                
                 <div class="dropdown">
                     <input type="button" value="Menu Venda" class="btn"/>
                     <div class="dropdown-content">
-                      <a th:href="@{/cadastroVenda}">Cadastrar Venda</a>
-                      <a th:href="@{/controleVenda}">Listar Vendas Cadastradas</a>
+                      <a id="header_link_Cvenda" th:href="@{/cadastroVenda}">Cadastrar Venda</a>
+                      <a id="header_link_Lvenda" th:href="@{/controleVenda}">Listar Vendas Cadastradas</a>
                     </div>
                 </div>
 
                 <div class="dropdown">
                     <input type="button" value="Menu Estoque" class="btn"/>
                     <div class="dropdown-content">
-                        <a th:href="@{/cadastroProduto}">Cadastrar Produto</a>
-                        <a th:href="@{/controleProduto}">Listar Produtos Cadastrados</a>
+                        <a id="header_link_Cestoque" th:href="@{/cadastroProduto}">Cadastrar Produto</a>
+                        <a id="header_link_Lestoque" th:href="@{/controleProduto}">Listar Produtos Cadastrados</a>
                     </div>
                 </div>
 
                 <div class="dropdown">
                     <input type="button" value="Menu Usuário" class="btn"/>
                     <div class="dropdown-content">
-                        <a th:href="@{/cadastroUsuario}">Cadastrar Usuário</a>
-                        <a th:href="@{/controleUsuario}">Listar Usuários Cadastrados</a>
+                        <a id="header_link_Cusuario" th:href="@{/cadastroUsuario}">Cadastrar Usuário</a>
+                        <a id="header_link_Lusuario" th:href="@{/controleUsuario}">Listar Usuários Cadastrados</a>
                     </div>
                 </div>
-            </div>            
+                <div class="dropdown">
+                    <a th:href="@{/excluiSession}"><input type="button" value="Sair" class="btn"/></a>
+                </div>
+                
+            </div>
+            
         </header>
     </body>
 </html>

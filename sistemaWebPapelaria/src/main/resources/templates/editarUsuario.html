@@ -36,8 +36,10 @@
                                 <br/>
 
                                 <label for="txt_cargo">Cargo</label><br/>
-                                <input class="rounded form-control" type="text" id="txt_cargo" name="cargo" pattern="[A-Za-z\s]+$" placeholder="Somente letras!"/>
-                                <br/>
+                                <select class="form-select" name="cargo" id="txt_cargo">
+                                    <option value="vendedor">Vendedor</option>
+                                    <option value="gerente">Gerente</option>
+                                </select><br/>
                                 
                                 <label for="txt_senha">Senha</label><br/>
                                 <input class="rounded form-control" type="password" id="txt_senha" name="senha" placeholder="Informe uma senha"/>

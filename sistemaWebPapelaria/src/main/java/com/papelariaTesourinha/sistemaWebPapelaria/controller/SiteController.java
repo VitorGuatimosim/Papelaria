@@ -10,6 +10,8 @@ import com.papelariaTesourinha.sistemaWebPapelaria.data.VendaEntity;
 import com.papelariaTesourinha.sistemaWebPapelaria.service.ProdutoService;
 import com.papelariaTesourinha.sistemaWebPapelaria.service.UsuarioService;
 import com.papelariaTesourinha.sistemaWebPapelaria.service.VendaService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,12 +36,12 @@ public class SiteController {
     @Autowired
     VendaService vendaService;
     
-    @GetMapping("/")
+    @GetMapping("/home")
     public String viewHomePage(){
         return "home";
     }
     
-    @GetMapping("/login")
+    @GetMapping("/")
     public String viewLoginPage(){
         return "login";
     }
@@ -71,7 +73,7 @@ public class SiteController {
             }
         }
         
-        return "redirect:/";
+        return "redirect:/home";
     }
     
     @GetMapping("/controleVenda")
@@ -120,7 +122,7 @@ public class SiteController {
             }
         }
         
-        return "redirect:/";
+        return "redirect:/home";
     }
     
      @GetMapping("/controleUsuario")
@@ -171,7 +173,7 @@ public class SiteController {
             }
         }
         
-        return "redirect:/";
+        return "redirect:/home";
     }
     
     @GetMapping("/controleProduto")
@@ -193,5 +195,29 @@ public class SiteController {
     public String deletarProduto(@PathVariable(value="id") Integer id){
         produtoService.deletarProduto(id);
         return "redirect:/controleProduto";
+    }
+    
+    /*  CONTROLLER SESSION  */
+    
+    @GetMapping("/gravaSession") 
+    public String gravaSessao(HttpServletRequest request, String nome, String cargo){ 
+        HttpSession sessao = request.getSession(); 
+        if(sessao != null){
+            sessao.setAttribute("usuario", nome);
+            sessao.setAttribute("cargo", cargo);
+        }else{
+            return "redirect:/";
+        }
+        return "redirect:/home";
+    }
+    
+    @GetMapping("/excluiSession")
+    public String excluiSessao(HttpServletRequest request){
+        HttpSession sessao = request.getSession();
+        if(sessao != null){
+            sessao.removeAttribute("usuario");
+            sessao.removeAttribute("cargo");
+        }
+        return "redirect:/";
     }
 }

@@ -28,22 +28,24 @@
                     <div class="col-md-3 menu-venda">
                         <h2>MENU VENDA</h2>
                         <p>No campo Venda, você pode cadastrar, editar e visualizar vendas!</p>
-                        <a th:href="@{/controleVenda}"><input type="button" value="IR" class="btn btn-primary rounded-pill px-3"/></a>
+                        <a id="a_link_venda" th:href="@{/controleVenda}"><input type="button" value="IR" id="link_venda" class="btn btn-primary rounded-pill px-3"/></a>
                     </div>
                     <div class="col-md-3 menu-estoque">
                         <h2>MENU ESTOQUE</h2>
                         <p>No campo Estoque, você pode cadastrar, editar e visualizar produtos!</p>
-                        <a th:href="@{/controleProduto}"><input type="button" value="IR" class="btn btn-primary rounded-pill px-3"/></a>
+                        <a id="a_link_estoque" th:href="@{/controleProduto}"><input type="button" value="IR" id="link_estoque" class="btn btn-primary rounded-pill px-3"/></a>
                     </div>
                     <div class="col-md-3 menu-usuario">
                         <h2>MENU USUÁRIO</h2>
                         <p>No campo Usuário, você pode cadastrar, editar e visualizar usuários!</p>
-                        <a th:href="@{/controleUsuario}"><input type="button" value="IR" class="btn btn-primary rounded-pill px-3"/></a>
+                        <a id="a_link_usuario" th:href="@{/controleUsuario}"><input type="button" value="IR" id="link_usuario" class="btn btn-primary rounded-pill px-3"/></a>
                     </div>
                 </div>
             </div>
         </div>
         
-        <footer th:insert="~{footer.html}"></footer>
+    <footer th:insert="~{footer.html}"></footer>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> 
+     <script th:src="@{/js/script.js}"></script>
     </body>
 </html>

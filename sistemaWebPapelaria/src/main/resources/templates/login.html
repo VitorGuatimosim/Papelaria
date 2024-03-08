@@ -10,7 +10,9 @@
     <title>Login</title>
 </head>
 <body>
-    <header th:insert="~{header.html}"></header>
+    <header>
+        <img th:src="@{/images/Logo.png}"/>
+    </header>
 
     <div class="main-content">
         <div class="container">
@@ -27,20 +29,20 @@
             <div class="row">
                 <div class="col-md-1"></div>
                 <div class="col-md-10 form-login">
-                    <form action="home.html">
+                    <form id="formLogin">
                         <h3>LOGIN</h3>
                         <div class="row">
                             <div class="col-md-3"></div>
-                            <label for="usuario">Usuário</label>
-                            <input class="rounded form-control" type="text" id="usuario" name="usuario" required="true" maxlength="10"/>
+                            <label for="txt_usuario_nome">Usuário</label>
+                            <input class="rounded form-control" type="text" id="txt_usuario_nome" name="usuario" maxlength="10"/>
                             <br/>
                         </div>
                         <div class="row">
                             <div class="col-md-3"></div>
-                            <label for="senha">Senha</label>
-                            <input class="rounded form-control" type="password" id="senha" name="senha" required="true"/>
+                            <label for="txt_senha">Senha</label>
+                            <input class="rounded form-control" type="password" id="txt_senha" name="senha"/>
                         </div>
-                        <input type="submit" value="ENTRAR" class="btn btn-primary rounded-pill px-3" onclick="alert('Login feito com sucesso!')"/>
+                        <input type="submit" value="ENTRAR" class="btn btn-primary rounded-pill px-3"/>
                     </form>                    
                 </div>
                 <div class="col-md-1"></div>
@@ -48,5 +50,7 @@
         </div>
     </div>
     <footer th:insert="~{footer.html}"></footer>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> 
+     <script th:src="@{/js/script.js}"></script>
 </body>
 </html>

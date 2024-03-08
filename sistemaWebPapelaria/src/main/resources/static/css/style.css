@@ -13,7 +13,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 }
 
 html,body{
-    height: 90%;
+    height: 88%;
 }
 
 header{
@@ -34,13 +34,22 @@ header img{
 header .nav-menu{
     float: right;
     max-width: 100%;
-    margin: 0px 40px;
+    margin: 0px 20px;
 }
 
 header .nav-menu .btn{    
     margin-top: 53px;
     width: 100%;
     max-width: 100%;
+}
+
+.usuario_nome{
+    float: right;
+    margin: 0px 10px;
+}
+
+.nomeLogado{    
+    text-align: center;
 }
   
 .dropdown {
@@ -73,7 +82,7 @@ header .nav-menu .btn{
 }
 
 .main-content{
-    margin-top: 20px;
+    margin-top: 48px;
     min-height: 100%;
     max-width: 100%;
 }
@@ -172,18 +181,9 @@ footer{
 
 /* ESTILIZAÇÃO PADRÃO DA PÁGINA DE LISTAGEM */
 
-.div-pesquisa label{
-    max-width: 100%;
-    width: 50px;
-}
-
-.div-pesquisa input{
-    max-width: 100%;
-    width: 300px;
-}
-
 .tabela-lista{
     margin-top: 20px;
+    margin-bottom: 20px;
     max-width: 100%;
     overflow: auto;
     height: 600px;

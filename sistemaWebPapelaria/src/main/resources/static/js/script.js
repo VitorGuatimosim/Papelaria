@@ -1,5 +1,98 @@
 $(document).ready(function(){
     
+    /*  SCRIPTS DE LOGIN */
+    
+    $('#formLogin').submit(function(event){
+        event.preventDefault();
+        let usuario_nome = $('#txt_usuario_nome').val();
+        
+        if(!usuario_nome){
+            alert('Por favor, preencha o nome de usuário');
+            return;
+        }else{
+            let senha = $('#txt_senha').val();
+            if(!senha){
+                alert('Por favor, preencha a senha do usuário');
+                return;
+            }else{
+                let usuario_login = {
+                    usuario_nome: usuario_nome,
+                    senha: senha
+                };
+                autenticaUsuario(usuario_login);
+            }
+        }   
+    });    
+    
+    function autenticaUsuario(usuario_login){
+        $.get('http://localhost:8080/usuario/listar', function(data){
+            let encontrado = false;
+            for(let i = 0; i < data.length; i++){
+                let usuario = data[i];
+                
+                if(usuario.usuario_nome == usuario_login.usuario_nome &&
+                        usuario.senha == usuario_login.senha){
+                    let usuarioLogado = {
+                        usuario_nome: usuario_login.usuario_nome,
+                        cargo: usuario.cargo
+                    };
+                    encontrado = true;
+                    gravaSessao(usuarioLogado);
+                }
+            }
+            if(encontrado == false){
+                alert("Usuário incorreto!");
+            }
+        
+        });
+    }
+    
+    function gravaSessao(usuario_sessao){
+        window.location.href = "http://localhost:8080/gravaSession?nome="+usuario_sessao.usuario_nome+"&cargo="+ usuario_sessao.cargo; 
+    }
+    
+    function verificaPermissao(){
+           $.get('http://localhost:8080/sessoes/leCargo', function(data){
+            let cargo = data;
+            
+            if(cargo == "" && window.location.href != "http://localhost:8080/"){
+                alert("Sem sessão! \nPor favor realize o login!");
+                window.location.href = "http://localhost:8080/";
+                
+            }else{
+                
+                pegaNome();
+
+                if(cargo == "vendedor"){
+                    $('#header_link_Cestoque').removeAttr('href');
+
+                    $('#header_link_Cusuario').removeAttr('href');
+                    $('#header_link_Lusuario').removeAttr('href');
+
+                    $('#a_link_usuario').removeAttr('href');
+                    $('#link_usuario').prop('disabled', true);
+
+
+                    $('.btn_editar_venda').removeAttr("href");
+                    $('.btn_deletar_venda').removeAttr("href");
+
+                    $('.btn_editar_usuario').removeAttr("href");
+                    $('.btn_deletar_usuario').removeAttr("href");
+
+                    $('.btn_editar_produto').removeAttr("href");
+                    $('.btn_deletar_produto').removeAttr("href");
+                }
+            }
+        });
+    }
+    
+    function pegaNome(){
+           $.get('http://localhost:8080/sessoes/le', function(data){
+               $('.nomeLogado').text("Olá, " + data);
+        });
+    }
+    
+    
     /*  SCRIPTS DE PRODUTO */
     
     function carregarProdutos(){
@@ -13,17 +106,18 @@ $(document).ready(function(){
                     let quantidade = $('<td>').text(produto.quantidade);
                     let categoria = $('<td>').text(produto.categoria);
                     let botaoAtualizar = $('<i>')
-                            .addClass('bi bi-pencil')                            
-                            .click(function(){
-                                window.location.href = 'editarProduto/id='+produto.id;
-                            });;
+                            .addClass('bi bi-pencil');
                     let botaoDeletar = $('<i>')
-                            .addClass('bi bi-x-lg')
-                            .click(function(){
-                                window.location.href = 'deletarProduto/id='+produto.id;
-                            });
-                    let aBotaoAtualizar = $('<a href="#">').append(botaoAtualizar);
-                    let aBotaoDeletar = $('<a href="#">').append(botaoDeletar);
+                            .addClass('bi bi-x-lg');
+                    
+                    let aBotaoAtualizar = $('<a>')
+                            .addClass('btn_editar_produto')
+                            .attr('href', 'editarProduto/id='+produto.id)
+                            .append(botaoAtualizar);
+                    let aBotaoDeletar = $('<a>')
+                            .addClass('btn_deletar_produto')
+                            .attr('href', 'deletarProduto/id='+produto.id)
+                            .append(botaoDeletar);
                     
                     let tdBotaoAtualizar = $('<td>').append(aBotaoAtualizar);
                     let tdBotaoDeletar = $('<td>').append(aBotaoDeletar);
@@ -39,6 +133,7 @@ $(document).ready(function(){
                             .append(tdBotaoDeletar);
                     $('#tabelaProdutos tbody').append(tr);
                 }
+                verificaPermissao();
         });
     }
     
@@ -169,17 +264,18 @@ $(document).ready(function(){
                     let usuario_nome = $('<td>').text(usuario.usuario_nome);
                     let senha = $('<td>').text(usuario.senha);
                     let botaoAtualizar = $('<i>')
-                            .addClass('bi bi-pencil')                            
-                            .click(function(){
-                                window.location.href = 'editarUsuario/id='+usuario.id;
-                            });;
+                            .addClass('bi bi-pencil');
                     let botaoDeletar = $('<i>')
-                            .addClass('bi bi-x-lg')
-                            .click(function(){
-                                window.location.href = 'deletarUsuario/id='+usuario.id;
-                            });
-                    let aBotaoAtualizar = $('<a href="#">').append(botaoAtualizar);
-                    let aBotaoDeletar = $('<a href="#">').append(botaoDeletar);
+                            .addClass('bi bi-x-lg');
+                    
+                    let aBotaoAtualizar = $('<a>')
+                            .addClass('btn_editar_usuario')
+                            .attr('href', 'editarUsuario/id='+usuario.id)
+                            .append(botaoAtualizar);
+                    let aBotaoDeletar = $('<a>')
+                            .addClass('btn_deletar_usuario')
+                            .attr('href', 'deletarUsuario/id='+usuario.id)
+                            .append(botaoDeletar);
                     
                     let tdBotaoAtualizar = $('<td>').append(aBotaoAtualizar);
                     let tdBotaoDeletar = $('<td>').append(aBotaoDeletar);
@@ -200,6 +296,7 @@ $(document).ready(function(){
                             .append(tdBotaoDeletar);
                     $('#tabelaUsuarios tbody').append(tr);
                 }
+                verificaPermissao();
         });
     }
     
@@ -410,6 +507,7 @@ $(document).ready(function(){
     /*  SCRIPTS VENDA */
     
     function carregarVendas(){
+        
         $.get('http://localhost:8080/venda/listar', function(data){
                 $('#tabelaVendas tbody').empty();
                 
@@ -422,17 +520,18 @@ $(document).ready(function(){
                     let data_venda = $('<td>').text(venda.data_venda);
                     let forma_pagamento = $('<td>').text(venda.forma_pagamento);
                     let botaoAtualizar = $('<i>')
-                            .addClass('bi bi-pencil')                            
-                            .click(function(){
-                                window.location.href = 'editarVenda/id='+venda.id;
-                            });;
+                            .addClass('bi bi-pencil');                       
                     let botaoDeletar = $('<i>')
-                            .addClass('bi bi-x-lg')
-                            .click(function(){
-                                window.location.href = 'deletarVenda/id='+venda.id;
-                            });
-                    let aBotaoAtualizar = $('<a href="#">').append(botaoAtualizar);
-                    let aBotaoDeletar = $('<a href="#">').append(botaoDeletar);
+                            .addClass('bi bi-x-lg');
+                    let aBotaoAtualizar = $('<a>')
+                            .addClass("btn_editar_venda")
+                            .attr("href", "editarVenda/id="+venda.id)
+                            .append(botaoAtualizar);
+                    console.log("ligou");
+                    let aBotaoDeletar = $('<a>')
+                            .addClass("btn_deletar_venda")
+                            .attr("href", "deletarVenda/id="+venda.id)
+                            .append(botaoDeletar);
                     
                     let tdBotaoAtualizar = $('<td>').append(aBotaoAtualizar);
                     let tdBotaoDeletar = $('<td>').append(aBotaoDeletar);
@@ -449,6 +548,7 @@ $(document).ready(function(){
                             .append(tdBotaoDeletar);
                     $('#tabelaVendas tbody').append(tr);
                 }
+                verificaPermissao();
         });
     }
     
@@ -601,5 +701,6 @@ $(document).ready(function(){
         }
     }
     carregarDados();
+    verificaPermissao();
 });
 
